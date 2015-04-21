@@ -7,12 +7,18 @@ import static org.junit.Assert.*;
 public class NewTestCasesTest {
 
     private MailMessage message;
+    private ServerOptions options;
 
     @Before
     public void setup() {
         this.message = new MailMessageImpl();
     }
 
+
+
+    /* Message Formatting Utests */
+
+    // Tests initial capacity of header HashMap
     @Test
     public void testMaxHeaders() {
         message.addHeader("header1", "value1");
@@ -31,6 +37,7 @@ public class NewTestCasesTest {
 	assertEquals(10, i);
     }
 
+    // Tests that HashMap increases capacity with addition of another header
     @Test
     public void testMaxHeadersPlus1() {
         message.addHeader("header1", "value1");
@@ -48,6 +55,17 @@ public class NewTestCasesTest {
 	int i = 0;
 	while(it.hasNext()) { i++; it.next(); }
 	assertEquals(11, i);
+    }
+
+    /* Server Options Utests */
+    @Test
+    public void negativePort() {
+        String[] args = new String[]{"-1"};
+        options = new ServerOptions(args);
+        assertEquals(-1, options.port);
+        assertEquals(true, options.threaded);
+        assertEquals(true, options.valid);
+        assertEquals(RollingMailStore.class, options.mailStore.getClass());
     }
 
 }
