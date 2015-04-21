@@ -190,7 +190,7 @@ public class NewTestCasesTest {
         mailProps.setProperty("mail.smtp.sendpartial", "true");
         return mailProps;
     }
-    
+
     private void sendMessage(int port, String from, String subject, String body, String to) {
         try {
             Properties mailProps = getMailProperties(port);
@@ -202,5 +202,15 @@ public class NewTestCasesTest {
             e.printStackTrace();
             fail("Unexpected exception: " + e);
         }
+    }
+
+    private MimeMessage createMessage(Session session, String from, String to, String subject, String body) throws MessagingException {
+        MimeMessage msg = new MimeMessage(session);
+        msg.setFrom(new InternetAddress(from));
+        msg.setSubject(subject);
+        msg.setSentDate(new Date());
+        msg.setText(body);
+        msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        return msg;
     }
 }
