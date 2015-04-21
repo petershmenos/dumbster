@@ -21,7 +21,6 @@ public class NewTestCasesTest {
 
     /* Message Formatting Utests */
 
-    // Tests initial capacity of header HashMap
     @Test
     public void testMaxHeaders() {
         message.addHeader("header1", "value1");
@@ -40,7 +39,6 @@ public class NewTestCasesTest {
 	assertEquals(10, i);
     }
 
-    // Tests that HashMap increases capacity with addition of another header
     @Test
     public void testMaxHeadersPlus1() {
         message.addHeader("header1", "value1");
@@ -90,4 +88,9 @@ public class NewTestCasesTest {
         assertEquals("QUIT", request.getClientAction().toString());
     }
 
+    @Test
+    public void testHeloInvalidMessage() {
+        Request request = Request.createRequest(null, "HELO");
+        assertEquals("EHLO", request.getClientAction().toString());
+    }
 }
