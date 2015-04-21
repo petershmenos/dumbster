@@ -1,5 +1,6 @@
 package com.dumbster.smtp;
 import org.junit.*;
+import java.util.Iterator;
 import com.dumbster.smtp.MailMessage;
 import static org.junit.Assert.*;
 
