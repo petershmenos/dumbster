@@ -182,6 +182,15 @@ public class NewTestCasesTest {
     }
 
     /* Helpers */
+
+    private Properties getMailProperties(int port) {
+        Properties mailProps = new Properties();
+        mailProps.setProperty("mail.smtp.host", "localhost");
+        mailProps.setProperty("mail.smtp.port", "" + port);
+        mailProps.setProperty("mail.smtp.sendpartial", "true");
+        return mailProps;
+    }
+    
     private void sendMessage(int port, String from, String subject, String body, String to) {
         try {
             Properties mailProps = getMailProperties(port);
