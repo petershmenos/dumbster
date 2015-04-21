@@ -1,4 +1,6 @@
 package com.dumbster.smtp;
+
+import com.dumbster.smtp.SmtpServer;
 import com.dumbster.smtp.action.*;
 import org.junit.*;
 import java.util.Iterator;
@@ -6,11 +8,24 @@ import com.dumbster.smtp.MailMessage;
 import com.dumbster.smtp.mailstores.EMLMailStore;
 import com.dumbster.smtp.mailstores.RollingMailStore;
 import com.dumbster.smtp.Response;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
+import java.util.Date;
 import static org.junit.Assert.*;
 
 public class NewTestCasesTest {
 
 	private static final int SMTP_PORT = 1081;
+	private final String SERVER = "localhost";
+    private final String FROM = "sender@here.com";
+    private final String TO = "baker32@illinois.edu";
+    private final String SUBJECT = "Test Dumbster";
+    private final String BODY = "Test Body";
+    private final int WAIT_TICKS = 10000;
+
     private MailMessage message;
     private ServerOptions options;
     private MailStore mailStore;
@@ -151,4 +166,32 @@ public class NewTestCasesTest {
         server.stop();
     }
 
+
+    /* Advanced Test Cases */
+    @Test void testRealEmail() {
+    	ServerOptions options = new ServerOptions();
+        options.port = SMTP_PORT;
+        server = SmtpServerFactory.startServer(options);
+
+        sendMessage(SMTP_PORT, FROM, SUBJECT, BODY, TO);
+        server.anticipateMessageCountFor(1, WAIT_TICKS);
+        assertTrue(server.getEmailCount() == 1);
+        MailMessage email = server.getMessage(0);
+
+        server.stop();
+    }
+
+    /* Helpers */
+    private void sendMessage(int port, String from, String subject, String body, String to) {
+        try {
+            Properties mailProps = getMailProperties(port);
+            Session session = Session.getInstance(mailProps, null);
+
+            MimeMessage msg = createMessage(session, from, to, subject, body);
+            Transport.send(msg);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Unexpected exception: " + e);
+        }
+    }
 }
