@@ -2,6 +2,8 @@ package com.dumbster.smtp;
 import org.junit.*;
 import java.util.Iterator;
 import com.dumbster.smtp.MailMessage;
+import com.dumbster.smtp.mailstores.EMLMailStore;
+import com.dumbster.smtp.mailstores.RollingMailStore;
 import static org.junit.Assert.*;
 
 public class NewTestCasesTest {
