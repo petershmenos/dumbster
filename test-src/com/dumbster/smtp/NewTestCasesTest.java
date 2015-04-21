@@ -24,7 +24,10 @@ public class NewTestCasesTest {
 	message.addHeader("header8", "value8");
 	message.addHeader("header9", "value9");
 	message.addHeader("header10", "value10");
-	assertEquals("header1: value1\n\n\n", message.toString());
+	Iterator<String> it = message.getHeaderNames();
+	int i = 0;
+	while(it.hasNext()) { i++; it.next(); }
+	assertEquals(10, i);
     }
 
 }
