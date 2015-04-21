@@ -136,9 +136,10 @@ public class NewTestCasesTest {
     	MailMessage[] mm = new MailMessage[10];
     	ServerOptions options = new ServerOptions();
     	options.port = SMTP_PORT;
-    	server = SMtpServerFactory.startServer(options);
+    	server = SmtpServerFactory.startServer(options);
         server.getMessages();
         assertEquals(0, server.getEmailCount());
+        server.stop();
     }
 
 }
