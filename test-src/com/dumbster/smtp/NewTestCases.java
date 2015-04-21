@@ -3,7 +3,7 @@ import org.junit.*;
 import com.dumbster.smtp.MailMessage;
 import static org.junit.Assert.*;
 
-public class MailMessageTest {
+public class NewTestCases {
 
     private MailMessage message;
 
