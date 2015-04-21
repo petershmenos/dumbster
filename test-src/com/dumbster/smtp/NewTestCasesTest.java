@@ -12,10 +12,12 @@ public class NewTestCasesTest {
 
     private MailMessage message;
     private ServerOptions options;
+    private MailStore mailstore;
 
     @Before
     public void setup() {
         this.message = new MailMessageImpl();
+        mailStore = new RollingMailStore();
     }
 
 
@@ -114,7 +116,7 @@ public class NewTestCasesTest {
 	@Test
     public void testResponseInvalidIndex() {
     	List l = new List("-1");
-    	Response r = l.response(null, null, null);
+    	Response r = l.response(null, mailstore, null);
     	assertEquals("There are 0 message(s).", r.getMessage());
     }
 
