@@ -78,4 +78,16 @@ public class NewTestCasesTest {
         assertEquals(".", request.getClientAction().toString());
     }
 
+    @Test
+    public void testDataFromCreateRequest() {
+        Request request = Request.createRequest(SmtpState.GREET, "DATA");
+        assertEquals("DATA", request.getClientAction().toString());
+    }
+
+    @Test
+    public void testQuitFromCreateRequest() {
+        Request request = Request.createRequest(SmtpState.GREET, "QUIT");
+        assertEquals("QUIT", request.getClientAction().toString());
+    }
+
 }
