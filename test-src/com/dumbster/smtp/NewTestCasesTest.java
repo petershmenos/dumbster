@@ -112,7 +112,7 @@ public class NewTestCasesTest {
     }
 
 	@Test
-    public void testListIndexNegative() {
+    public void testResponseInvalidIndex() {
     	List l = new List("-1");
     	Response r = l.response(null, null, null);
     	assertEquals("There are 0 message(s).", r.message);
