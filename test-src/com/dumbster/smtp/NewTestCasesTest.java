@@ -10,9 +10,11 @@ import static org.junit.Assert.*;
 
 public class NewTestCasesTest {
 
+	private static final int SMTP_PORT = 1081;
     private MailMessage message;
     private ServerOptions options;
     private MailStore mailStore;
+    private SmtpServer server;
 
     @Before
     public void setup() {
@@ -112,7 +114,7 @@ public class NewTestCasesTest {
     	//This Test passes if there is no exception
     	//messageIndex is private, no public method to check its value
     }
-
+    //These two tests increase coverage
 	@Test
     public void testResponseInvalidIndex() {
     	List l = new List("-1");
@@ -125,6 +127,18 @@ public class NewTestCasesTest {
     	List l = new List("0");
     	Response r = l.response(null, mailStore, null);
     	assertEquals("There are 0 message(s).", r.getMessage());
+    }
+
+    /* SMTP Server Tests */
+    //This test increases coverage
+    @Test
+    public void getMessageTest() {
+    	MailMessage[] mm = new MailMessage[10];
+    	ServerOptions options = new ServerOptions();
+    	options.port = SMTP_PORT;
+    	server = SMtpServerFactory.startServer(options);
+        server.getMessages();
+        assertEquals(0, server.getEmailCount());
     }
 
 }
