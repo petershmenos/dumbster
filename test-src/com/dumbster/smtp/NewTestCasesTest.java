@@ -190,7 +190,7 @@ public class NewTestCasesTest {
 
         // Messages 3-10
         int i;
-        for (i = 3; i <= 10, i++)
+        for (i = 3; i <= 10; i++)
         {
         	sendMessage(SMTP_PORT, FROM, null, i.toString(), TO);
         	assertTrue(server.getEmailCount() == i);
