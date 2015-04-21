@@ -94,9 +94,17 @@ public class NewTestCasesTest {
         assertEquals("EHLO", request.getClientAction().toString());
     }
 
+    // This test increases branch coverage
     @Test
-    public void testHelo() {
+    public void testListFromCreateRequest() {
         Request request = Request.createRequest(SmtpState.GREET, "LIST");
         assertEquals("LIST", request.getClientAction().toString());
+    }
+
+    /* Action Tests */
+    @Test
+    public void testListIndexNegative() {
+    	List l = new List("-1");
+    	assertEquals(null, l.messageIndex)
     }
 }
