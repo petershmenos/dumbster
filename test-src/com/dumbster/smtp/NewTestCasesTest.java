@@ -192,12 +192,12 @@ public class NewTestCasesTest {
         int i;
         for (i = 3; i <= 10; i++)
         {
-        	sendMessage(SMTP_PORT, FROM, null, i, TO);
+        	sendMessage(SMTP_PORT, FROM, null, Integer.toString(i), TO);
         	assertTrue(server.getEmailCount() == i);
         }
         server.clearMessages();
         sendMessage(SMTP_PORT, FROM, SUBJECT, BODY, TO);
-        assertTrue(server.getEmailCount == 1);
+        assertTrue(server.getEmailCount() == 1);
         server.stop();
     }
 
