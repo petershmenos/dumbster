@@ -61,7 +61,7 @@ public class NewTestCasesTest {
 
     /* Server Options Utests */
     @Test
-    public void negativePort() {
+    public void testNegativePort() {
         String[] args = new String[]{"-1"};
         options = new ServerOptions(args);
         assertEquals(-1, options.port);
