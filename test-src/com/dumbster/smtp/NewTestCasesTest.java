@@ -1,4 +1,5 @@
 package com.dumbster.smtp;
+import com.dumbster.smtp.action.*;
 import org.junit.*;
 import java.util.Iterator;
 import com.dumbster.smtp.MailMessage;
@@ -68,6 +69,13 @@ public class NewTestCasesTest {
         assertEquals(true, options.threaded);
         assertEquals(true, options.valid);
         assertEquals(RollingMailStore.class, options.mailStore.getClass());
+    }
+
+    /* Request Utests*/
+    @Test
+    public void testDataBodyState() {
+        Request request = Request.createRequest(SmtpState.DATA_BODY, ".");
+        assertEquals(".", request.getClientAction().toString());
     }
 
 }
