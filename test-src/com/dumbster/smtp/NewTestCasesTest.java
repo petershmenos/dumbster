@@ -209,6 +209,10 @@ public class NewTestCasesTest {
         server = SmtpServerFactory.startServer(options);
     	mailStore2 = new RollingMailStore();
 
+    	// First rolling Mail Store Message
+    	MailMessage fm = new MailMessageImpl();
+    	mailStore2.addMessage(fm);
+    	
     	// Messages 1-10
     	int i;
         for (i = 1; i <= 10; i++)
@@ -218,7 +222,6 @@ public class NewTestCasesTest {
         	assertTrue(server.getEmailCount() == i);
         }
 
-        
         server.clearMessages();
         sendMessage(SMTP_PORT, FROM, SUBJECT, BODY, TO);
         assertTrue(server.getEmailCount() == 1);
