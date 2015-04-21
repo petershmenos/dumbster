@@ -168,7 +168,8 @@ public class NewTestCasesTest {
 
 
     /* Advanced Test Cases */
-    @Test void testRealEmail() {
+    @Test 
+    public void testRealEmail() {
     	ServerOptions options = new ServerOptions();
         options.port = SMTP_PORT;
         server = SmtpServerFactory.startServer(options);
