@@ -93,4 +93,10 @@ public class NewTestCasesTest {
         Request request = Request.createRequest(null, "HELO");
         assertEquals("EHLO", request.getClientAction().toString());
     }
+
+    @Test
+    public void testHelo() {
+        Request request = Request.createRequest(SmtpState.GREET, "LIST");
+        assertEquals("LIST", request.getClientAction().toString());
+    }
 }
