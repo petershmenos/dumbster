@@ -179,20 +179,20 @@ public class NewTestCasesTest {
         server.anticipateMessageCountFor(1, WAIT_TICKS);
         assertTrue(server.getEmailCount() == 1);
         MailMessage mm = server.getMessage(0);
-        assertEquals("Test Dumbster", mm.getFirstheaderValue("Subject"));
+        assertEquals("Test Dumbster", mm.getFirstHeaderValue("Subject"));
 
         // Message 2
         sendMessage(SMTP_PORT, FROM, SUBJECT, "HELLO!", TO);
         server.anticipateMessageCountFor(1, WAIT_TICKS);
         assertTrue(server.getEmailCount() == 2);
-        MailMessage mm = server.getMessage(1);
+        mm = server.getMessage(1);
         assertEquals("HELLO!", mm.getBody());
 
         // Messages 3-10
         int i;
         for (i = 3; i <= 10; i++)
         {
-        	sendMessage(SMTP_PORT, FROM, null, i.toString(), TO);
+        	sendMessage(SMTP_PORT, FROM, null, i, TO);
         	assertTrue(server.getEmailCount() == i);
         }
         server.clearMessages();
