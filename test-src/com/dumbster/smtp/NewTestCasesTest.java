@@ -120,4 +120,11 @@ public class NewTestCasesTest {
     	assertEquals("There are 0 message(s).", r.getMessage());
     }
 
+    @Test
+    public void testResponseValidNoMessages() {
+    	List l = new List("0");
+    	Response r = l.response(null, mailStore, null);
+    	assertEquals("There are 0 message(s).", r.getMessage());
+    }
+
 }
