@@ -174,11 +174,30 @@ public class NewTestCasesTest {
         options.port = SMTP_PORT;
         server = SmtpServerFactory.startServer(options);
 
+        // Message 1
         sendMessage(SMTP_PORT, FROM, SUBJECT, BODY, TO);
         server.anticipateMessageCountFor(1, WAIT_TICKS);
         assertTrue(server.getEmailCount() == 1);
-        MailMessage email = server.getMessage(0);
+        MailMessage mm = server.getMessage(0);
+        assertEquals("Test Dumbster", mm.getFirstheaderValue("Subject"));
 
+        // Message 2
+        sendMessage(SMTP_PORT, FROM, SUBJECT, "HELLO!", TO);
+        server.anticipateMessageCountFor(1, WAIT_TICKS);
+        assertTrue(server.getEmailCount() == 2);
+        MailMessage mm = server.getMessage(1);
+        assertEquals("HELLO!", mm.getBody());
+
+        // Messages 3-10
+        int i;
+        for (i = 3; i <= 10, i++)
+        {
+        	sendMessage(SMTP_PORT, FROM, null, i.toString(), TO);
+        	assertTrue(server.getEmailCount() == i);
+        }
+        server.clearMessages();
+        sendMessage(SMTP_PORT, FROM, SUBJECT, BODY, TO);
+        assertTrue(server.getEmailCount == 1);
         server.stop();
     }
 
