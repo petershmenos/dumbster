@@ -29,6 +29,7 @@ public class NewTestCasesTest {
     private MailMessage message;
     private ServerOptions options;
     private MailStore mailStore;
+    private MailStore mailStore2;
     private SmtpServer server;
 
     @Before
@@ -169,7 +170,7 @@ public class NewTestCasesTest {
 
     /* Advanced Test Cases */
     @Test 
-    public void testRealEmail() {
+    public void testUniqueMessagesWithClear() {
     	ServerOptions options = new ServerOptions();
         options.port = SMTP_PORT;
         server = SmtpServerFactory.startServer(options);
@@ -199,6 +200,30 @@ public class NewTestCasesTest {
         sendMessage(SMTP_PORT, FROM, SUBJECT, BODY, TO);
         assertTrue(server.getEmailCount() == 1);
         server.stop();
+    }
+
+    @Test 
+    public void testUniqueMessagesMultipleMailStores() {
+    	ServerOptions options = new ServerOptions();
+        options.port = SMTP_PORT;
+        server = SmtpServerFactory.startServer(options);
+    	mailStore2 = new RollingMailStore();
+
+    	// Messages 1-10
+    	int i;
+        for (i = 1; i <= 10; i++)
+        {
+        	sendMessage(SMTP_PORT, FROM, null, Integer.toString(i), TO);
+        	addAMessage();
+        	assertTrue(server.getEmailCount() == i);
+        }
+
+        
+        server.clearMessages();
+        sendMessage(SMTP_PORT, FROM, SUBJECT, BODY, TO);
+        assertTrue(server.getEmailCount() == 1);
+        server.stop();
+
     }
 
     /* Helpers */
@@ -232,5 +257,10 @@ public class NewTestCasesTest {
         msg.setText(body);
         msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
         return msg;
+    }
+
+    private void addAMessage() {
+        MailMessage message = new MailMessageImpl();
+        mailStore2.addMessage(message);
     }
 }
