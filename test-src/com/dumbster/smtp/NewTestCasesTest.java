@@ -105,6 +105,6 @@ public class NewTestCasesTest {
     @Test
     public void testListIndexNegative() {
     	List l = new List("-1");
-    	assertEquals(null, l.messageIndex)
+    	assertEquals(null, l.messageIndex);
     }
 }
