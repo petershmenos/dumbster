@@ -5,6 +5,7 @@ import java.util.Iterator;
 import com.dumbster.smtp.MailMessage;
 import com.dumbster.smtp.mailstores.EMLMailStore;
 import com.dumbster.smtp.mailstores.RollingMailStore;
+import com.dumbster.smtp.Response;
 import static org.junit.Assert.*;
 
 public class NewTestCasesTest {
@@ -102,9 +103,19 @@ public class NewTestCasesTest {
     }
 
     /* Action Tests */
+    // This test increases branch coverage
     @Test
     public void testListIndexNegative() {
     	List l = new List("-1");
-    	//pass if no exception
+    	//This Test passes if there is no exception
+    	//messageIndex is private, no public method to check its value
     }
+
+	@Test
+    public void testListIndexNegative() {
+    	List l = new List("-1");
+    	Response r = l.response(null, null, null);
+    	assertEquals("There are 0 message(s).", r.message);
+    }
+
 }
