@@ -305,7 +305,7 @@ public class NewTestCasesTest {
     public void emlMailStoreAddMessageNoDirectory() {
         emlMailStore = new EMLMailStore();
         emlMailStore.addMessage(message);
-        assertFalse("", emlMailStore.getMessage(0).getBody());
+        assertEquals("", emlMailStore.getMessage(0).getBody());
     }
     /* Helpers */
 
