@@ -14,6 +14,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;
+import static org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MockitoTestCases {
