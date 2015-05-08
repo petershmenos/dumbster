@@ -81,7 +81,7 @@ public class MockitoTest {
 		when(mm.addHeader("To", "you")).thenReturn(null);
 		when(mm.addHeader("From", "Me")).thenReturn(null);
 		when(mm.appendBody("This is the body")).thenReturn(null);
-		when(mm.toString()).thenReturn("To: you\nFrom: me\n\nThis is the body\n")
+		when(mm.toString()).thenReturn("To: you\nFrom: me\n\nThis is the body\n");
 	}
 
 	private Properties getMailProperties(int port) {
