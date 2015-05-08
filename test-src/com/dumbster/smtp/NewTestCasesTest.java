@@ -297,6 +297,7 @@ public class NewTestCasesTest {
     public void emlMailStoreSetDirectory() {
         emlMailStore = new EMLMailStore();
         String emlStoreDir = "build/test/eml_store_test" + String.valueOf(new Random().nextInt(1000000));
+        emlMailStore.setDirectory(emlStoreDir);
         assertTrue(true);
     }
     /* Helpers */
