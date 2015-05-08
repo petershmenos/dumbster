@@ -14,6 +14,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
 import java.util.Date;
+import java.io.IOException;
 import static org.junit.Assert.*;
 
 public class NewTestCasesTest {
