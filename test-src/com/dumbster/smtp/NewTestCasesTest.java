@@ -246,7 +246,9 @@ public class NewTestCasesTest {
         ServerOptions options = new ServerOptions();
         options.port = SMTP_PORT;
         server = SmtpServerFactory.startServer(options);
-        throw new IOException();
+        try {
+            throw new IOException();
+        }
     }
 
     /* Helpers */
