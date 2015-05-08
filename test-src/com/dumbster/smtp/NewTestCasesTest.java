@@ -249,7 +249,7 @@ public class NewTestCasesTest {
         try {
             throw new IOException();
         }
-        catch() {}
+        catch(Exception e) {}
     }
 
     /* Helpers */
