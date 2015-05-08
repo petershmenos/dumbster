@@ -56,38 +56,7 @@ public class MockitoTestCases {
 		assertEquals("Test Body", mm.getBody());
 	}
 
-	@Test
-	public void mockServerNoEmails1() {
-		setupMockServerNoEmailsTest();
-		assertEquals(0, server.getEmailCount());
-	}
-
-	@Test
-	public void mockServerWithEmails1() {
-		setupMockServerWithEmailsTest();
-		sendMessage(SMTP_PORT, FROM, SUBJECT, BODY, TO);
-		assertEquals(1, server.getEmailCount());
-		assertEquals(SUBJECT, mm.getFirstHeaderValue("Subject"));
-		assertEquals("Test Body", mm.getBody());
-	}
-
-@Test
-	public void mockServerNoEmails2() {
-		setupMockServerNoEmailsTest();
-		assertEquals(0, server.getEmailCount());
-	}
-
-	@Test
-	public void mockServerWithEmails2() {
-		setupMockServerWithEmailsTest();
-		sendMessage(SMTP_PORT, FROM, SUBJECT, BODY, TO);
-		assertEquals(1, server.getEmailCount());
-		assertEquals(SUBJECT, mm.getFirstHeaderValue("Subject"));
-		assertEquals("Test Body", mm.getBody());
-	}
-
-
-	/* Helpers */
+	/* Setup Helpers */
 
 	private void setupMockServerNoEmailsTest() {
 		when(server.getEmailCount()).thenReturn(0);

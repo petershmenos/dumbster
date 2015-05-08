@@ -23,6 +23,8 @@ import java.io.FileNotFoundException;
 import java.util.Random;
 import static org.junit.Assert.*;
 
+import static org.mockito.Mockito.*;
+
 public class NewTestCasesTest {
 
 	private static final int SMTP_PORT = 1081;
@@ -53,6 +55,8 @@ public class NewTestCasesTest {
     private EMLMailStore emlMailStore;
     private SmtpServer server;
 
+    private SmtpServer mserver;
+
     @Before
     public void setup() {
         this.message = new MailMessageImpl();
@@ -62,6 +66,13 @@ public class NewTestCasesTest {
 
 
     /* Message Formatting Utests */
+
+    @Test
+    public void mockServerNoEmails() {
+        mserver = mock(SmtpServer.class);
+        when(server.getEmailCount()).thenReturn(0);
+        assertEquals(0, server.getEmailCount());
+    }
 
     @Test
     public void testMaxHeaders() {
