@@ -27,7 +27,7 @@ public class MockitoTestCases {
 	/* Helpers */
 
 	private void setupMockServerTest() {
-		when(server.getEmailCount().thenReturn(0));
+		when(server.getEmailCount()).thenReturn(0);
 	}
 
 }
