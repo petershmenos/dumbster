@@ -28,6 +28,9 @@ public class MockitoTest {
 	@Mock
 	private MailMessage mm;
 
+	@Mock
+	private ServerOptions options;
+
 	private static final int SMTP_PORT = 1081;
 	private final String SUBJECT = "Message Subject";
 	private final String SERVER = "localhost";
@@ -39,6 +42,7 @@ public class MockitoTest {
 	public void setup(){
 		server = mock(SmtpServer.class);
 		mm = mock(MailMessage.class);
+		options = mock(ServerOptions.class);
 	}
 
 	@Test
@@ -65,6 +69,15 @@ public class MockitoTest {
 		assertEquals("To: you\nFrom: me\n\nThis is the body\n", mm.toString());
 	}
 
+	@Test
+	public void mockSetServerOptions() {
+		String[] args = new String[]{"1", "--threaded=false"};
+		setupMockSetServerOptions();
+		assertEquals(1, options.port);
+		assertEquals(false, options.threaded);
+		assertEquals(true, options.valid);
+	}
+
 	/* Setup Helpers */
 
 	private void setupMockServerNoEmailsTest() {
@@ -79,6 +92,12 @@ public class MockitoTest {
 
 	private void setupMockMailMessageHeadersAndBody() {
 		when(mm.toString()).thenReturn("To: you\nFrom: me\n\nThis is the body\n");
+	}
+
+	private void setupMockSetServerOptions() {
+		when(options.port).thenReturn(1);
+		when(options.threaded).thenReturn(false);
+		when(options.valid).thenReturn(true);
 	}
 
 	private Properties getMailProperties(int port) {
