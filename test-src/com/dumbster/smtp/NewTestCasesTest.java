@@ -2,6 +2,7 @@ package com.dumbster.smtp;
 
 import com.dumbster.smtp.SmtpServer;
 import com.dumbster.smtp.action.*;
+import com.dumbster.smtp.eml;
 import org.junit.*;
 import java.util.Iterator;
 import com.dumbster.smtp.MailMessage;
@@ -15,6 +16,7 @@ import javax.mail.internet.*;
 import java.util.Properties;
 import java.util.Date;
 import java.io.IOException;
+import java.io.ByteArrayInputStrem;
 import static org.junit.Assert.*;
 
 public class NewTestCasesTest {
@@ -27,7 +29,20 @@ public class NewTestCasesTest {
     private final String BODY = "Test Body";
     private final int WAIT_TICKS = 10000;
 
+    private final String text =
+            "From: \"John\" <baker32@illinois.edu>\n" +
+                    "To: \"PeterShmenos\" <petershmenos@gmail.com>\n" +
+                    "Date: Fri, 8 May 2015 12:16:43 -0500\n" +
+                    "Subject: Test\n" +
+                    "\n" +
+                    "Hello Peter,\n" +
+                    "This is only a test.\n" +
+                    "Sincerely,\n" +
+                    "Baker\n";
+
+
     private MailMessage message;
+    private EMLMailMessage emlMessage;
     private ServerOptions options;
     private MailStore mailStore;
     private MailStore mailStore2;
@@ -252,6 +267,12 @@ public class NewTestCasesTest {
         catch(Exception e) {}
     }
 
+    @Test
+    public void appendHeaderEMLmessage(){
+        emlMessage = new EMLMailMessage(new ByteArrayInputStrem(text.getBytes()));
+        emlMessage.appendHeader("From", " Baker");
+        assertEquals("John Baker", emlMessage.getHeaderValues("From"));
+    }
     /* Helpers */
 
     private Properties getMailProperties(int port) {
