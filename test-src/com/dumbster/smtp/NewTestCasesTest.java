@@ -283,7 +283,7 @@ public class NewTestCasesTest {
         try {
             emlMessage = new EMLMailMessage(f);
         }
-        catch(FileNotFoundException e) {
+        catch(RuntimeException e) {
             return;
         }
         assertEquals(1,2);
