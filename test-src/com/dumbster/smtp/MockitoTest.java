@@ -95,7 +95,7 @@ public class MockitoTest {
 	}
 
 	private void setupMockSetServerOptions() {
-		when(options.port).thenReturn(1);
+		when(options.port).thenReturn(1.toString());
 		when(options.threaded).thenReturn(false);
 		when(options.valid).thenReturn(true);
 	}
