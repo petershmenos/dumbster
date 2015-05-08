@@ -312,7 +312,7 @@ public class NewTestCasesTest {
         catch (Exception e) {
             return;
         }
-        assert(1,2);
+        assertEquals(1,2);
     }
 
     /* Helpers */
