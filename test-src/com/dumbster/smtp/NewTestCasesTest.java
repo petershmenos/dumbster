@@ -300,6 +300,13 @@ public class NewTestCasesTest {
         emlMailStore.setDirectory(emlStoreDir);
         assertTrue(true);
     }
+
+    @Test
+    public void emlMailStoreAddMessageNoDirectory() {
+        emlMailStore = new EMLMailStore();
+        emlMailStore.addMessage(message);
+        assertFalse(null, emlMailStore.getMessage(0));
+    }
     /* Helpers */
 
     private Properties getMailProperties(int port) {
