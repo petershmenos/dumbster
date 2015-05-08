@@ -307,7 +307,8 @@ public class NewTestCasesTest {
         File f = null;
         emlMailStore.setDirectory(f);
         try {
-            emlMailStore.addMessage(message);
+            emlMailStore.addMessage(null);
+            emlMailStore.addMessage(null);
         }
         catch (Exception e) {
             return;
