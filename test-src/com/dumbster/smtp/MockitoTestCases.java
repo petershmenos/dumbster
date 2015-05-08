@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class MockitoTestCases() {
+public class MockitoTestCases {
 
 	private SmtpServer server;
 
