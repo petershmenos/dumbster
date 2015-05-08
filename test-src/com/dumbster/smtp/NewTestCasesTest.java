@@ -276,7 +276,7 @@ public class NewTestCasesTest {
     public void appendHeaderEMLmessage(){
         emlMessage = new EMLMailMessage(new ByteArrayInputStream(text.getBytes()));
         emlMessage.appendHeader("From", " Baker");
-        assertEquals("John Baker", emlMessage.getFirstHeaderValue("From"));
+        assertEquals(" Baker", emlMessage.getFirstHeaderValue("From"));
     }
 
     @Test
