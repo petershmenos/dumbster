@@ -60,17 +60,35 @@ public class MockitoTestCases {
 		when(mm.getBody()).thenReturn("Test Body");
 	}
 
-	private void sendMessage(int port, String from, String subject, String body, String to) {
-    try {
-        Properties mailProps = getMailProperties(port);
-        Session session = Session.getInstance(mailProps, null);
+	private Properties getMailProperties(int port) {
+        Properties mailProps = new Properties();
+        mailProps.setProperty("mail.smtp.host", "localhost");
+        mailProps.setProperty("mail.smtp.port", "" + port);
+        mailProps.setProperty("mail.smtp.sendpartial", "true");
+        return mailProps;
+    }
 
-        MimeMessage msg = createMessage(session, from, to, subject, body);
-        Transport.send(msg);
+	private void sendMessage(int port, String from, String subject, String body, String to) {
+    	try {
+	        Properties mailProps = getMailProperties(port);
+	        Session session = Session.getInstance(mailProps, null);
+
+	        MimeMessage msg = createMessage(session, from, to, subject, body);
+	        Transport.send(msg);
         } 
-    catch (Exception e) {
-        e.printStackTrace();
-        fail("Unexpected exception: " + e);
+    	catch (Exception e) {
+	        e.printStackTrace();
+	        fail("Unexpected exception: " + e);
         }
+    }
+
+    private MimeMessage createMessage(Session session, String from, String to, String subject, String body) throws MessagingException {
+        MimeMessage msg = new MimeMessage(session);
+        msg.setFrom(new InternetAddress(from));
+        msg.setSubject(subject);
+        msg.setSentDate(new Date());
+        msg.setText(body);
+        msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        return msg;
     }
 }
