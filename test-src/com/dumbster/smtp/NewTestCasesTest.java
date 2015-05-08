@@ -20,6 +20,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Random;
 import static org.junit.Assert.*;
 
 public class NewTestCasesTest {
@@ -49,6 +50,7 @@ public class NewTestCasesTest {
     private ServerOptions options;
     private MailStore mailStore;
     private MailStore mailStore2;
+    private EMLMailStore emlMailStore;
     private SmtpServer server;
 
     @Before
@@ -289,6 +291,13 @@ public class NewTestCasesTest {
             return;
         }
         assertEquals(1,2);
+    }
+
+    @Test
+    public void emlMailStoreSetDirectory() {
+        emlMailStore = new EMLMailStore();
+        String emlStoreDir = "build/test/eml_store_test" + String.valueOf(new Random().nextInt(1000000));
+        assertTrue(1);
     }
     /* Helpers */
 
