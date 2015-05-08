@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class MockitoTestCases {
+public class MockitoTest {
 
 	@Mock
 	private SmtpServer server;
