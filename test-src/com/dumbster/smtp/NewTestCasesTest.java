@@ -240,6 +240,13 @@ public class NewTestCasesTest {
         server.stop();
     }
 
+    @Test 
+    public void startServerThrowException() {
+        server = SmtpServerFactory.startServer();
+        throw new IOException();
+        server.stop();
+    }
+
     /* Helpers */
 
     private Properties getMailProperties(int port) {
