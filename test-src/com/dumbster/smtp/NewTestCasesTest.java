@@ -301,28 +301,18 @@ public class NewTestCasesTest {
         assertTrue(true);
     }
 
-/*    @Test
-    public void emlMailStoreAddMessageNoDirectory() {
-        emlMailStore = new EMLMailStore();
-        File f = null;
-        emlMailStore.setDirectory(f);
-        try {
-            emlMailStore.addMessage(null);
-            emlMailStore.addMessage(null);
+    @Test
+    public void mainCoverage() {
+        Main m = new Main();
+        String[] args = new String[1];
+        args[0] = "--threaded=true";
+        try { 
+            m.main(args);
         }
         catch (Exception e) {
             return;
         }
-        assertEquals(1,2);
-    }
-*/
-
-    @Test
-    public void responseCoverage() {
-        Main m = new Main();
-        String[] args = new String[1];
-        args[0] = "--threaded=true";
-        m.main(args);
+        assert(1,2);
     }
 
     /* Helpers */
