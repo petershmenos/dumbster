@@ -229,6 +229,17 @@ public class NewTestCasesTest {
 
     }
 
+    /* Final Report Tests */
+
+    /* Increase Method Coverage */
+    @Test 
+    public void startServerNoInputs() {
+        server = SmtpServerFactory.startServer();
+        server.getMessages();
+        assertEquals(0, server.getEmailCount());
+        server.stop();
+    }
+
     /* Helpers */
 
     private Properties getMailProperties(int port) {
