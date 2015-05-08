@@ -17,6 +17,9 @@ import java.util.Properties;
 import java.util.Date;
 import java.io.IOException;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import static org.junit.Assert.*;
 
 public class NewTestCasesTest {
@@ -272,6 +275,18 @@ public class NewTestCasesTest {
         emlMessage = new EMLMailMessage(new ByteArrayInputStream(text.getBytes()));
         emlMessage.appendHeader("From", " Baker");
         assertEquals("John Baker", emlMessage.getHeaderValues("From"));
+    }
+
+    @Test
+    public void emlMessageFileNotFound(){
+        File f = new File("X:\\doesNotExist.txt");
+        try {
+            emlMessage = new EMLMailMessage(f);
+        }
+        catch(FileNotFoundException e) {
+            return;
+        }
+        assertEquals(1,2);
     }
     /* Helpers */
 
