@@ -306,8 +306,11 @@ public class NewTestCasesTest {
         emlMailStore = new EMLMailStore();
         File f = null;
         emlMailStore.setDirectory(f);
-        emlMailStore.addMessage(message);
-        assertEquals("", emlMailStore.getMessage(0).getBody());
+        try {
+            emlMailStore.addMessage(message);
+        }
+        catch (Exception e) {}
+        assertEquals(1,2);
     }
     /* Helpers */
 
