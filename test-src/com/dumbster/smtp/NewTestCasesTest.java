@@ -243,9 +243,10 @@ public class NewTestCasesTest {
 
     @Test 
     public void startServerThrowException() {
-        server = SmtpServerFactory.startServer();
+        ServerOptions options = new ServerOptions();
+        options.port = SMTP_PORT;
+        server = SmtpServerFactory.startServer(options);
         throw new IOException();
-        server.stop();
     }
 
     /* Helpers */
