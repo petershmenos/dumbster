@@ -2,7 +2,7 @@ package com.dumbster.smtp;
 
 import com.dumbster.smtp.SmtpServer;
 import com.dumbster.smtp.action.*;
-//import com.dumbster.smtp.eml;
+import com.dumbster.smtp.eml.*;
 import org.junit.*;
 import java.util.Iterator;
 import com.dumbster.smtp.MailMessage;
