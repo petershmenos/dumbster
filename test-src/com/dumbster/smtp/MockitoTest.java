@@ -56,6 +56,15 @@ public class MockitoTest {
 		assertEquals("Test Body", mm.getBody());
 	}
 
+	@Test
+	public void mockMailMessageHeadersAndBody() {
+		setupMockMailMessageHeadersAndBody();
+		mm.addHeader("To", "you");
+		mm.addHeader("From", "me");
+		mm.appendBody("This is the body");
+		assertEquals("To: you\nFrom: me\n\nThis is the body\n", mm.toString());
+	}
+
 	/* Setup Helpers */
 
 	private void setupMockServerNoEmailsTest() {
@@ -66,6 +75,13 @@ public class MockitoTest {
 		when(mm.getFirstHeaderValue("Subject")).thenReturn(SUBJECT);
 		when(server.getEmailCount()).thenReturn(1);
 		when(mm.getBody()).thenReturn("Test Body");
+	}
+
+	private void setupMockMailMessageHeadersAndBody() {
+		when(mm.addHeader("To", "you")).thenReturn(null);
+		when(mm.addHeader("From", "Me")).thenReturn(null);
+		when(mm.appendBody("This is the body")).thenReturn(null);
+		when(mm.toString()).thenReturn("To: you\nFrom: me\n\nThis is the body\n")
 	}
 
 	private Properties getMailProperties(int port) {
