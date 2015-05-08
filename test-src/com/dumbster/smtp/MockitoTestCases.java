@@ -17,7 +17,10 @@ import static org.mockito.Mockito.*;
 
 public class MockitoTestCases {
 
+	@Mock
 	private SmtpServer server;
+
+	@Mock
 	private MailMessage mm;
 
 	private static final int SMTP_PORT = 1081;
