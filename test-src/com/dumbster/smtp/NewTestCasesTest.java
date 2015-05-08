@@ -70,8 +70,8 @@ public class NewTestCasesTest {
     @Test
     public void mockServerNoEmails() {
         mserver = mock(SmtpServer.class);
-        when(server.getEmailCount()).thenReturn(0);
-        assertEquals(0, server.getEmailCount());
+        when(mserver.getEmailCount()).thenReturn(0);
+        assertEquals(0, mserver.getEmailCount());
     }
 
     @Test
