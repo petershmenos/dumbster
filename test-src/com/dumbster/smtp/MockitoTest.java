@@ -78,9 +78,6 @@ public class MockitoTest {
 	}
 
 	private void setupMockMailMessageHeadersAndBody() {
-		when(mm.addHeader("To", "you")).thenReturn(0);
-		when(mm.addHeader("From", "Me")).thenReturn(0);
-		when(mm.appendBody("This is the body")).thenReturn(0);
 		when(mm.toString()).thenReturn("To: you\nFrom: me\n\nThis is the body\n");
 	}
 
