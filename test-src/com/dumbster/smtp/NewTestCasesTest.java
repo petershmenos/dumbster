@@ -321,7 +321,7 @@ public class NewTestCasesTest {
     public void responseCoverage() {
         Main m = new Main();
         String[] args = new String[1];
-        args[0] = "--mailStore=EMLMailMessage";
+        args[0] = "--threaded=true";
         m.main(args);
     }
 
