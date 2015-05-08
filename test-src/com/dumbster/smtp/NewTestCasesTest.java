@@ -309,7 +309,9 @@ public class NewTestCasesTest {
         try {
             emlMailStore.addMessage(message);
         }
-        catch (Exception e) {}
+        catch (Exception e) {
+            return;
+        }
         assertEquals(1,2);
     }
     /* Helpers */
