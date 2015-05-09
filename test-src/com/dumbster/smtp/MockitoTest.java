@@ -97,7 +97,7 @@ public class MockitoTest {
 	}
 
 	private void setupMockSetServerOptions() {
-		when(options.mailStore.getClass()).thenReturn(RollingMailStore.class)
+		when(options.mailStore.getClass()).thenReturn(RollingMailStore.class);
 	}
 
 	private Properties getMailProperties(int port) {
