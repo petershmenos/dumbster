@@ -76,7 +76,7 @@ public class MockitoTest {
 	public void mockUnrecognizedRequest() {
 		MailStore mailStore = new RollingMailStore();
 		Response r = request.execute(mailStore, mm);
-		assertEquals(SmtpState.GREET, request.getState);
+		assertEquals(SmtpState.GREET, request.getState());
 	}
 
 	/* Setup Helpers */
