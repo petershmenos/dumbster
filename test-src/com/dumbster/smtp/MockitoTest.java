@@ -2,6 +2,8 @@ package com.dumbster.smtp;
 
 import com.dumbster.smtp.SmtpServer;
 import com.dumbster.smtp.MailMessage;
+import com.dumbster.smtp.mailstores.RollingMailStore;
+
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -95,9 +97,7 @@ public class MockitoTest {
 	}
 
 	private void setupMockSetServerOptions() {
-		when(options.port).thenReturn(Integer.toString(1));
-		when(options.threaded).thenReturn(Boolean.toString(false));
-		when(options.valid).thenReturn(Boolean.toString(true));
+		when(options.mailStore.getClass()).thenReturn(RollingMailStore.class)
 	}
 
 	private Properties getMailProperties(int port) {
