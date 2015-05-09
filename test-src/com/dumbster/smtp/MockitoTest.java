@@ -3,6 +3,7 @@ package com.dumbster.smtp;
 import com.dumbster.smtp.SmtpServer;
 import com.dumbster.smtp.MailMessage;
 import com.dumbster.smtp.mailstores.RollingMailStore;
+import com.dumbster.smtp.action.*;
 
 
 import javax.activation.DataHandler;
@@ -31,7 +32,7 @@ public class MockitoTest {
 	private MailMessage mm;
 
 	@Mock
-	private ServerOptions options;
+	private Request request;
 
 	private static final int SMTP_PORT = 1081;
 	private final String SUBJECT = "Message Subject";
@@ -45,6 +46,7 @@ public class MockitoTest {
 		server = mock(SmtpServer.class);
 		mm = mock(MailMessage.class);
 		options = mock(ServerOptions.class);
+		mailStore = mock(RollingMailStore.class);
 	}
 
 	@Test
@@ -72,10 +74,10 @@ public class MockitoTest {
 	}
 
 	@Test
-	public void mockSetServerOptions() {
-		String[] args = new String[]{"1", "--threaded=false"};
-		setupMockSetServerOptions();
-		assertEquals("1", Integer.toString(options.port));
+	public void mockUnrecognizedRequest() {
+		MailStore mailStore = new RollingMailStore();
+		Response r = request.execute(mailStore, mm);
+		assertEquals(SmtpState.GREET, request.getState);
 	}
 
 	/* Setup Helpers */
@@ -94,8 +96,8 @@ public class MockitoTest {
 		when(mm.toString()).thenReturn("To: you\nFrom: me\n\nThis is the body\n");
 	}
 
-	private void setupMockSetServerOptions() {
-		when(Integer.toString(options.port)).thenReturn("1");
+	private void setupMockUnrecognizedRequest() {
+		when(request.getState()).thenReturn(SmtpState.GREET);
 	}
 
 	private Properties getMailProperties(int port) {
