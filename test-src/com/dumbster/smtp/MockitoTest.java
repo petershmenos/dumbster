@@ -75,7 +75,7 @@ public class MockitoTest {
 	public void mockSetServerOptions() {
 		String[] args = new String[]{"1", "--threaded=false"};
 		setupMockSetServerOptions();
-		assertEquals("1", options.port.toString());
+		assertEquals("1", Integer.toString(options.port));
 	}
 
 	/* Setup Helpers */
@@ -95,7 +95,7 @@ public class MockitoTest {
 	}
 
 	private void setupMockSetServerOptions() {
-		when(options.port.toString()).thenReturn(Integer.toString(1));;
+		when(Integer.toString(options.port)).thenReturn(Integer.toString(1));;
 	}
 
 	private Properties getMailProperties(int port) {
