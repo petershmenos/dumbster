@@ -45,8 +45,7 @@ public class MockitoTest {
 	public void setup(){
 		server = mock(SmtpServer.class);
 		mm = mock(MailMessage.class);
-		options = mock(ServerOptions.class);
-		mailStore = mock(RollingMailStore.class);
+		request = mock(Request.class);
 	}
 
 	@Test
