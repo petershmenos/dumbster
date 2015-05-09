@@ -4,6 +4,7 @@ import com.dumbster.smtp.SmtpServer;
 import com.dumbster.smtp.MailMessage;
 import com.dumbster.smtp.mailstores.RollingMailStore;
 import com.dumbster.smtp.action.*;
+import com.dumbster.smtp.SmtpState
 
 
 import javax.activation.DataHandler;
