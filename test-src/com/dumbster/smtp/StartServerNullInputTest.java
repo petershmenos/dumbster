@@ -2,6 +2,7 @@ package com.dumbster.smtp;
 
 import com.dumbster.smtp.SmtpServer;
 
+import org.junit.*;
 import static org.junit.Assert.*;
 
 public class StartServerNullInputTest {
