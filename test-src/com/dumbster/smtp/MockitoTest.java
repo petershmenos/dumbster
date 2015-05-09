@@ -95,7 +95,7 @@ public class MockitoTest {
 	}
 
 	private void setupMockSetServerOptions() {
-		when(Integer.toString(options.port)).thenReturn(Integer.toString(1));;
+		when(Integer.toString(options.port)).thenReturn("1");
 	}
 
 	private Properties getMailProperties(int port) {
